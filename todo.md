@@ -1,0 +1,39 @@
+# Requirements
+- Should be able to see every insight's sources (so you can see the connections between your insights and stories)
+  - if the system tells you "this is something I noticed about you", people should be able to understand how it came to that. Some people aren't aware of the observations people make that lead them to percieve you in a certain way.
+
+# Tasks
+- Run job titles thorugh ChatGPT to collapse slight job variations (Assistant Teacher -> Teacher)
+- Schema design
+- Set up DB to:
+  - make job table
+  - make insight table 
+    - has many jobs and insights
+- Figure out if/where/how to authenticate people before starting the game
+  - Give them the option to test it out w/o auth or to authenticate
+  - Where to let people manage auth on ui
+- Program in how to handle a new insight  
+  - Treat every insight as distinct?
+  - Make background prompt that does something like "I'd prefer to do X job over Y job because Z"
+  - Take reason and turn it into a list of insights
+  - Do a check to see how much a new reason relates to an insight before changing it
+    - Not every insight should be modified every time you give a new reason, because the reason could be unrelated to a past insight
+  - What if we just blew away all the insights and built them back up each time?
+- What would it take to tie an insight back to it's sources?
+  - Show the job would you rather + reason
+  - Show the previous insight that most related to 
+- How to show insight's sources
+- How/when to show insights?
+- How to toggle insight's visibility
+- How to keep the insight schema flexible enough so I can add other games and keep the same backend insight model?
+  - Different `types` of insights
+  - Each insight is one sentence
+  - Insights are chattable
+    - You can talk back to the system if an insight doesn't sit right with you.
+- How to remember which jobs someone already interacted with
+  - Make a decision model?
+    - Jobs
+    - Picked job
+    - Reason
+  - Maybe you make a different model for the outcome of each game, which is then used to make an insight
+  - Feels a little complicated
