@@ -4,7 +4,8 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { schema, submit } from "../actions/jobs";
+import { jobSubmit } from "../actions";
+import { jobSchema } from "../validations";
 
 import React from 'react';
 import {
@@ -19,8 +20,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export function JobForm({ jobs }: { jobs: [string, string] }) {
-  const form = useForm<z.infer<typeof schema>>({
-    resolver: zodResolver(schema),
+  const form = useForm<z.infer<typeof jobSchema>>({
+    resolver: zodResolver(jobSchema),
     defaultValues: {
       jobs,
       reason: "",
@@ -29,7 +30,7 @@ export function JobForm({ jobs }: { jobs: [string, string] }) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(submit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(jobSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="selectedJob"

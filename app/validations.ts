@@ -1,9 +1,6 @@
-"use server";
-
 import * as z from "zod";
-// import AI sdk
 
-const schema = z.object({
+const jobSchema = z.object({
   jobs: z.array(z.string()).min(2).max(2),
   selectedJob: z.string(),
   reason: z
@@ -16,12 +13,4 @@ const schema = z.object({
     }),
 });
 
-async function submit(data: z.infer<typeof schema>) {
-
-  console.log(data);
-
-  // mutate data
-  // revalidate cache
-}
-
-export { schema, submit };
+export { jobSchema };
