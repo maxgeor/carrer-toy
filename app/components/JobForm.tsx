@@ -30,7 +30,13 @@ export function JobForm({ jobs }: { jobs: [string, string] }) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(jobSubmit)} className="space-y-6">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          form.handleSubmit(jobSubmit)();
+        }}
+        className="space-y-6"
+      >
         <FormField
           control={form.control}
           name="selectedJob"
@@ -77,7 +83,9 @@ export function JobForm({ jobs }: { jobs: [string, string] }) {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="bg-black rounded text-white">
+          Submit
+        </Button>
       </form>
     </Form>
   );
