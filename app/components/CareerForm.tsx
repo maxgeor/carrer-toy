@@ -4,8 +4,8 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { jobSubmit } from "../actions";
-import { jobSchema } from "../validations";
+import { careerSubmit } from "../actions";
+import { careerSchema } from "../validations";
 
 import React from 'react';
 import {
@@ -19,11 +19,11 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-export function JobForm({ jobs }: { jobs: [string, string] }) {
-  const form = useForm<z.infer<typeof jobSchema>>({
-    resolver: zodResolver(jobSchema),
+export function CareerForm({ careers }: { careers: [string, string] }) {
+  const form = useForm<z.infer<typeof careerSchema>>({
+    resolver: zodResolver(careerSchema),
     defaultValues: {
-      jobs,
+      careers,
       reason: "",
     },
   });
@@ -33,16 +33,16 @@ export function JobForm({ jobs }: { jobs: [string, string] }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          form.handleSubmit(jobSubmit)();
+          form.handleSubmit(careerSubmit)();
         }}
         className="space-y-6"
       >
         <FormField
           control={form.control}
-          name="selectedJob"
+          name="selectedCareer"
           render={({ field }) => (
             <FormItem className="space-y-3">
-              <FormLabel>Which job would you rather do?</FormLabel>
+              <FormLabel>Which career would you rather do?</FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
@@ -50,15 +50,15 @@ export function JobForm({ jobs }: { jobs: [string, string] }) {
                   className="flex flex-col space-y-1"
                   required
                 >
-                  {jobs.map((job) => (
+                  {careers.map((career) => (
                     <FormItem
-                      key={job}
+                      key={career}
                       className="flex items-center space-x-3 space-y-0"
                     >
                       <FormControl>
-                        <RadioGroupItem value={job} />
+                        <RadioGroupItem value={career} />
                       </FormControl>
-                      <FormLabel className="font-normal">{job}</FormLabel>
+                      <FormLabel className="font-normal">{career}</FormLabel>
                     </FormItem>
                   ))}
                 </RadioGroup>

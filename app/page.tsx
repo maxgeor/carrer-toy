@@ -1,9 +1,9 @@
-import { JobForm } from "./components/JobForm";
+import { CareerForm } from "./components/CareerForm";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <JobForm jobs={['bob', 'sam']} />
+      <CareerForm careers={['Mathematician', 'Painter']} />
     </main>
   );
 }
