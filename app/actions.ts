@@ -73,10 +73,6 @@ async function careerSubmit(data: z.infer<typeof careerSchema>) {
       // 💡 I could hack this by only asking why 5 times.  
   // That way, I could condense multiple OpenAI calls into one.
 
-  if (isThisAnswerShitty) {
-    // reprompt
-  }
-
   const insightsFromSelectedCareer = await openai.chat.completions.create({
     messages: [{
       role: 'user',
